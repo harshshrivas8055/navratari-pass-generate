@@ -8,6 +8,7 @@ import {
   deleteuser,
 } from "@/app/redux-toolkit/adminSlice";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
   const dispatch = useDispatch();
@@ -20,10 +21,12 @@ export default function AdminPage() {
   const openPDF = (id) => {
     window.open(`/api/admin/pdf?userId=${id}`, "_blank");
   };
-
+   const router = useRouter();
+   const goToevents = () => router.push("/admin/eventss");
   return (
     <div className="p-6 md:p-10">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Admin Panel</h1>
+      <button onClick={goToevents} className="px-4 py-2 rounded-lg text-white font-semibold shadow transition bg-blue-600 hover:bg-blue-700">Add events</button>
 
       {loading && (
         <p className="text-blue-500 text-lg animate-pulse">Loading...</p>
